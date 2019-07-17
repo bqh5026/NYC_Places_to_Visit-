@@ -1,0 +1,82 @@
+body {
+  background-color: #000;
+}
+
+#landing-header {
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  padding-top: 40vh;
+}
+
+#landing-header h1 {
+  color: #fff;
+}
+
+.slideshow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slideshow li {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 50s linear infinite;
+}
+
+.slideshow li:nth-child(1) {
+  background-image: url(https://imgs.6sqft.com/wp-content/uploads/2017/10/19110043/flatiron-building-NYC.jpg);
+}
+.slideshow li:nth-child(2) {
+  background-image: url(https://imgs.6sqft.com/wp-content/uploads/2019/02/27120643/The-Vessel-February-2019-e1551287240955.jpg);
+  animation-delay: 10s;
+}
+.slideshow li:nth-child(3) {
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9sGCcuroJHZMUb1BV839M8e8LbHjpZamwnmsaGOKmnGRQQN1tRw);
+  animation-delay: 20s;
+}
+.slideshow li:nth-child(4) {
+  background-image: url(https://www.duanestreethotel.com/wp-content/uploads/2017/08/GettyImages-494607942-1.jpg);
+  animation-delay: 30s;
+}
+.slideshow li:nth-child(5) {
+  background-image: url(https://lh3.googleusercontent.com/nYL_YO-sJZgLz_evgX1ATUNQsS4cWAQkKztVZcIttOz0jPQ82-OkttB_-x05fqYbxGIC8RfZSjVyBf7lYjxMme6zfTLUtx8BZiH9bwgHJDTWYmx8uYpxyYxPTnnHp71e2BPF_uY);
+  animation-delay: 40s;
+}
+
+@keyframes imageAnimation {
+  0% {
+    opacity: 0;
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}
