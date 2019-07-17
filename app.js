@@ -53,10 +53,10 @@ app.use("/nyc_places/:id/comments", commentRoutes);
 //   port =3000;
 // }
 //
-app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("Server is running");
-});
-
-// app.listen(3000, function(){
-//   console.log("Server is running");
+// app.listen(process.env.PORT, process.env.IP, function(){
+//     console.log("Server is running");
 // });
+
+app.listen(3000, function(){
+  console.log("Server is running");
+});
