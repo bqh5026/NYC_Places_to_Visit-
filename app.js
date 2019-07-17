@@ -48,15 +48,15 @@ app.use("/", indexRoutes);
 app.use("/nyc_places", placeRoutes);
 app.use("/nyc_places/:id/comments", commentRoutes);
 
-// let port = process.env.PORT;
-// if (port == null || port =="") {
-//   port =3000;
-// }
-//
-// app.listen(process.env.PORT, process.env.IP, function(){
-//     console.log("Server is running");
-// });
+let port = process.env.PORT;
+if (port == null || port =="") {
+  port =3000;
+}
 
-app.listen(3000, function(){
-  console.log("Server is running");
+app.listen(process.env.PORT, process.env.IP, function(){
+    console.log("Server is running");
 });
+
+// app.listen(3000, function(){
+//   console.log("Server is running");
+// });
