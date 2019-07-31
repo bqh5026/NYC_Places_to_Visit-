@@ -1,20 +1,20 @@
 //jshint esversion:6
 
-var express        = require("express"),
-    app            = express(),
-    bodyParser     = require("body-parser"),
-    mongoose       = require("mongoose"),
-    flash          = require("connect-flash"),
-    passport       = require("passport"),
-    LocalStrategy  = require("passport-local"),
-    methodOverride = require("method-override"),
-    Place          = require("./models/place"),
-    Comment        = require("./models/comment"),
-    User           = require("./models/user")
+const express        = require("express"),
+      app            = express(),
+      bodyParser     = require("body-parser"),
+      mongoose       = require("mongoose"),
+      flash          = require("connect-flash"),
+      passport       = require("passport"),
+      LocalStrategy  = require("passport-local"),
+      methodOverride = require("method-override"),
+      Place          = require("./models/place"),
+      Comment        = require("./models/comment"),
+      User           = require("./models/user")
 
-var commentRoutes = require("./routes/comments"),
-    placeRoutes   = require("./routes/places"),
-    indexRoutes    = require("./routes/index")
+const commentRoutes = require("./routes/comments"),
+      placeRoutes   = require("./routes/places"),
+      indexRoutes    = require("./routes/index")
 
 mongoose.connect(process.env.DATABASEURL || 'mongodb://localhost:27017/nyc_places', {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
