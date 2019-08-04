@@ -54,8 +54,6 @@ if (port == null || port =="") {
   port =3000;
 }
 
-console.log(process.env.PORT);
-console.log(process.env.IP);
 
 app.listen(port, function(){
     console.log("Server is running");
