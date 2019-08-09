@@ -1,70 +1,72 @@
-var express = require("express");
-var router = express.Router(); 
-var Place = require("../models/place");
-var middleware = require("../middleware");
+//jshint esversion: 6
 
-router.get("/", function(req, res){
-    Place.find({}, function(err, allPlaces){
-        if(err) {
-            console.log(err); 
-        } else {
-            res.render("places/index", {places: allPlaces});           
-        }
-    }); 
-  
-});
+const express = require("express"),
+      router = express.Router(),
+      Place = require("../models/place"),
+      middleware = require("../middleware");
 
-router.post("/", middleware.isLoggedIn, function(req, res){
-    var name = req.body.name;
-    var price = req.body.price; 
-    var image = req.body.image;
-    var desc = req.body.description; 
-    var author = {
-        id: req.user._id,
-        username: req.user.username
-    }
-    var newPlace = {name: name, price: price, image: image, description: desc, author: author};
-    Place.create(newPlace, function(err, newlyCreated){
+router.get("/", (req, res) =>{
+    Place.find({}, (err, allPlaces) => {
         if(err) {
-            console.log(err); 
+            console.log(err);
         } else {
-            res.redirect("/nyc_places");             
+            res.render("places/index", {places: allPlaces});
         }
     });
-}); 
 
-router.get("/new", middleware.isLoggedIn, function(req, res){
-    res.render("places/new.ejs"); 
-}); 
+});
 
-router.get("/:id", function(req, res){
-    Place.findById(req.params.id).populate("comments").exec(function(err, foundPlace){
+router.post("/", middleware.isLoggedIn, (req, res) =>{
+    let name = req.body.name;
+    let price = req.body.price;
+    let image = req.body.image;
+    let desc = req.body.description;
+    let author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    let newPlace = {name: name, price: price, image: image, description: desc, author: author};
+    Place.create(newPlace, (err, newlyCreated) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect("/nyc_places");
+        }
+    });
+});
+
+router.get("/new", middleware.isLoggedIn, (req, res) => {
+    res.render("places/new.ejs");
+});
+
+router.get("/:id", (req, res) => {
+    Place.findById(req.params.id).populate("comments").exec((err, foundPlace) => {
        if(err) {
            console.log(err);
        } else {
-           res.render("places/show.ejs", {place: foundPlace}); 
+           res.render("places/show.ejs", {place: foundPlace});
        }
     });
-}); 
+});
 
-router.get("/:id/edit", middleware.checkPlaceOwnership, function(req, res){
-         Place.findById(req.params.id, function(err, foundPlace){
-                res.render("places/edit", {place: foundPlace}); 
-                }); 
-}); 
- 
-router.put("/:id", middleware.checkPlaceOwnership, function(req, res){
-     Place.findByIdAndUpdate(req.params.id, req.body.place, function(err, updatedPlace){
+router.get("/:id/edit", middleware.checkPlaceOwnership, (req, res) => {
+         Place.findById(req.params.id, (err, foundPlace) => {
+                res.render("places/edit", {place: foundPlace});
+                });
+});
+
+router.put("/:id", middleware.checkPlaceOwnership, (req, res) => {
+     Place.findByIdAndUpdate(req.params.id, req.body.place, (err, updatedPlace) => {
          if(err) {
              res.redirect("/nyc_places");
          } else {
-             res.redirect("/nyc_places/" + req.params.id); 
+             res.redirect("/nyc_places/" + req.params.id);
          }
      });
  });
 
-router.delete("/:id", middleware.checkPlaceOwnership, function(req, res){
-    Place.findByIdAndRemove(req.params.id, function(err){
+router.delete("/:id", middleware.checkPlaceOwnership, (req, res) => {
+    Place.findByIdAndRemove(req.params.id, (err) => {
        if(err) {
            res.redirect("/nyc_places");
        } else {
@@ -75,4 +77,4 @@ router.delete("/:id", middleware.checkPlaceOwnership, function(req, res){
 
 
 
-module.exports = router; 
+module.exports = router;
