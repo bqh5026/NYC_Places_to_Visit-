@@ -1,10 +1,12 @@
-var mongoose = require('mongoose'); 
+//jshint esversion: 6
 
-var placeSchema = new mongoose.Schema({
-    name: String, 
-    price: String, 
+const mongoose = require('mongoose');
+
+const placeSchema = new mongoose.Schema({
+    name: String,
+    price: String,
     image: String,
-    // address: String, 
+    // address: String,
     description: String,
     author: {
         id: {
@@ -19,6 +21,6 @@ var placeSchema = new mongoose.Schema({
             ref: "Comment"
         }
      ]
-  }); 
+  });
 
-module.exports = mongoose.model("Place", placeSchema); 
+module.exports = mongoose.model("Place", placeSchema);
